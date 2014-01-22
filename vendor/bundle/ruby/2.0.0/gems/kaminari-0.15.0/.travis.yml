@@ -1,0 +1,35 @@
+services: mongodb
+
+script: "bundle exec rake spec"
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - rbx-19mode
+
+gemfile:
+  - gemfiles/active_record_30.gemfile
+  - gemfiles/active_record_31.gemfile
+  - gemfiles/active_record_32.gemfile
+  - gemfiles/active_record_40.gemfile
+  - gemfiles/active_record_edge.gemfile
+  - gemfiles/data_mapper_12.gemfile
+  - gemfiles/mongo_mapper.gemfile
+  - gemfiles/mongoid_24.gemfile
+  - gemfiles/mongoid_30.gemfile
+  - gemfiles/mongoid_31.gemfile
+  - gemfiles/sinatra_13.gemfile
+  - gemfiles/sinatra_14.gemfile
+
+matrix:
+  allow_failures:
+    - rvm: 1.9.3
+      gemfile: gemfiles/active_record_edge.gemfile
+    - rvm: 2.0.0
+      gemfile: gemfiles/active_record_edge.gemfile
+    - rvm: rbx-19mode
+      gemfile: gemfiles/active_record_edge.gemfile
+    - rvm: rbx-19mode
+      gemfile: gemfiles/sinatra_13.gemfile
+    - rvm: rbx-19mode
+      gemfile: gemfiles/sinatra_14.gemfile
